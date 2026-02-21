@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include, path
+from shoestore import settings, views
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls', namespace="accounts")),
-]
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('products.urls'))
+] + static(settings.MEDIA_URL, media_root=settings.MEDIA_ROOT)
